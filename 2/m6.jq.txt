@@ -1,0 +1,12 @@
+let $mdata := json-doc ("./mo.json")
+for $x in $mdata.ORDERS[]
+return {"orderNum": $x.ONO, "total price":sum(
+for $item in $x.ITEMS[]
+let $ptnum := $item.PARTNUMBER
+let $quan := $item.QUANTITY
+return (
+for $p in $mdata.PARTS[]
+where $p.PNO eq $ptnum
+return (
+$p.PRICE * $quan))
+)}

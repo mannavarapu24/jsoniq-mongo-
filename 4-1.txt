@@ -1,0 +1,21 @@
+{
+"$schema": "http://json-schema.org/draft-06/schema#",
+"definitions": {
+"posts" : {
+"type": "array",
+"properties": {
+"postID" :{ "type" : "int"},
+"postDate" :{ "type": "string" , "format" : "date-time"},
+"poster" : {"type" : "string" , "format" : "email"},
+"subject" : {"type" : "int"},
+"content" : {"type" : "int"} ,
+"followup" : [
+{
+"type": "array",
+"items": { "$ref": "#/definitions/posts" },
+"default": []
+}]
+}
+}
+}
+	}

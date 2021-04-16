@@ -1,0 +1,7 @@
+let $x := json-doc ("./mo.json")
+for $y in $x.EMPLOYEES[]
+let $ord := [for $o in $x.ORDERS[] where $y.ENO eq $o.TAKENBY
+return $o.ONO]
+return {"eNo" : $y.ENO,
+"orders" : $ord
+}

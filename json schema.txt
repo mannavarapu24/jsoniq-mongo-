@@ -1,0 +1,59 @@
+{
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "$ref": "#/definitions/Welcome",
+    "definitions": {
+        "Welcome": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "posts": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Post"
+                    }
+                }
+            },
+            "required": [
+                "posts"
+            ],
+            "title": "Welcome"
+        },
+        "Post": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "postID": {
+                    "type": "integer"
+                },
+                "postDate": {
+                    "type": "string",
+                    "format": "date"
+                },
+                "poster": {
+                    "type": "string"
+                },
+                "subject": {
+                    "type": "string"
+                },
+                "content": {
+                    "type": "string"
+                },
+                "followup": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Post"
+                    }
+                }
+            },
+            "required": [
+                "content",
+                "followup",
+                "postDate",
+                "postID",
+                "poster",
+                "subject"
+            ],
+            "title": "Post"
+        }
+    }
+}

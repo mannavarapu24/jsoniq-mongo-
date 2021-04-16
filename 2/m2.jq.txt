@@ -1,0 +1,9 @@
+let $mdata := json-doc("./mo.json")
+let $pt := [for $p in $mdata.PARTS[] 
+where $p.PRICE lt 20.00 return $p.PNO]
+let $c_no := for $o in $mdata.ORDERS[]
+where (every $p in $pt[] satisfies (some $i in $o.ITEMS[].PARTNUMBER satisfies $i eq $p))
+return $o.CUSTOMER
+for $c in $mdata.CUSTOMERS[]
+where $c.CNO eq $c_no
+return $c.CNAME

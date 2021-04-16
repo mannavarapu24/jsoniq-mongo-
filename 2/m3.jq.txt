@@ -1,0 +1,9 @@
+let $mdata := json-doc ("mo.json")
+for $x in $mdata.EMPLOYEES[]
+let $cZIP := (for $o in $mdata.ORDERS[] where $x.ENO eq $o.TAKENBY
+return for $c in $mdata.CUSTOMERS[]
+where $o.CUSTOMER eq $c.CNO
+return $c.ZIP)
+return (for $dummy in [1] where every $z in $cZIP
+satisfies $z ne $x.ZIP
+return $x.ENAME)

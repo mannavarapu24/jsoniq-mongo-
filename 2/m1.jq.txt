@@ -1,0 +1,11 @@
+distinct-values(
+(
+let $mdata := json-doc ("./mo.json")
+for $m in $mdata.EMPLOYEES[],
+$o in $mdata.ORDERS[],
+$c in $mdata.CUSTOMERS[]
+where $m.ENO eq $o.TAKENBY and $m.CITY eq  "Wichita"
+and $c.CNO eq $o.CUSTOMER
+return $c.CNAME
+)
+)

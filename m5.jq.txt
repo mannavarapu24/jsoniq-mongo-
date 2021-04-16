@@ -1,0 +1,6 @@
+let $mdata := json-doc ("./mo.json")
+for $x in $mdata.ORDERS[]
+	let $rdate := $x.RECEIVEDDATE
+	let $sdate := $x.SHIPPEDDATE
+		where date($sdate) gt date($rdate) +  xs:dayTimeDuration("P2D")
+	return $x.ONO
